@@ -1,0 +1,6 @@
+//1 Hello my friend.
+Hello my friend2.
+//2 Hello my //friend3.
+//3 Hello my friend.
+Hello my friend2.
+//LastLine

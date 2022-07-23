@@ -1,0 +1,188 @@
+                            PRACTICAL 25 JUNE
+                            Om Gupta - 214047
+
+Q2. Create a class TwoDim which contains private members as x and y coordinates in
+package P1. Define the default constructor, a parameterized constructor and
+override toString() method to display the co-ordinates. Now reuse this class and in
+package P2 create another class ThreeDim, adding a new dimension as z as its
+private member. Define the constructors for the subclass and override toString()
+method in the subclass also. Write appropriate methods to show dynamic method
+dispatch. The main() function should be in a package P.
+
+CODE:
+
+//INSIDE PACKAGE P
+package P;
+
+import P1.TwoDim;
+import P2.ThreeDim;
+
+public class Q2 {
+    public static void main(String[] args) {
+        TwoDim A1 = new TwoDim(2,3);
+        TwoDim A2 = new TwoDim();
+        System.out.println(A1.toString());
+        System.out.println(A2.toString());
+        
+        ThreeDim B1 = new ThreeDim(3,4,5);
+        ThreeDim B2 = new ThreeDim();
+        System.out.println(B1.toString());
+        System.out.println(B2.toString());
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+//INSIDE PACKAGE P1
+package P1;
+
+public class TwoDim {
+    private int x;
+    private int y;
+
+    public TwoDim(){
+        x = 0;
+        y = 0;
+    }
+
+    public TwoDim(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public String toString(){
+        return ("("+x+", "+y+")");
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+//INSIDE PACKAGE P2
+package P2;
+
+import P1.TwoDim;
+
+public class ThreeDim extends TwoDim {
+    private int z;
+
+    public ThreeDim(){
+        z = 0;
+    }
+
+    public ThreeDim(int x, int y, int z){
+        super(x,y);
+        this.z = z;
+    }
+
+    public String toString(){
+        return ("("+getX()+", "+getY()+", "+z+")");
+    }
+
+    public int getZ(){
+        return z;
+    }
+}
+
+***************************************************************************************
+
+Q3. Define an abstract class Shape in package P1. Inherit two more classes: Rectangle in
+package P2 and Circle in package P3. Write a program to ask the user for the type of
+shape and then using the concept of dynamic method dispatch, display the area of
+the appropriate subclass. Also write appropriate methods to read the data. The
+main() function should not be in any package.
+
+CODE:
+import java.util.Scanner;
+import P2.Rectangle;
+import P3.Circle;
+
+public class Q3 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("\t1 - Rectangle\n\t2 - Circle\nCHOSE FROM (1-2): ");
+        int choice = in.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter length & breadth: ");
+                double length = in.nextDouble(), breadth = in.nextDouble();
+                Rectangle R = new Rectangle(length, breadth);
+                System.out.println("Area = "+R.area());
+                break;
+        
+            case 2:
+                System.out.print("Enter radius: ");
+                double radius = in.nextDouble();
+                Circle C = new Circle(radius);
+                System.out.println("Area = "+C.area());
+                break;
+        
+            default:
+                System.out.println("Invalid Choice!");
+                break;
+        }
+
+        in.close();
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+//INSIDE PACKAGE P2
+package P2;
+
+import P1.Shape;
+
+public class Rectangle extends Shape {
+    private double length;
+    private double breadth;
+
+    public Rectangle(){
+        length = 0;
+        breadth = 0;
+    }
+
+    public Rectangle(double length, double breadth){
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+    public double area(){
+        return length*breadth;
+    }
+}
+
+---------------------------------------------------------------------------------------
+
+//INSIDE PACKAGE P3
+package P3;
+
+import P1.Shape;
+import java.lang.Math;
+
+public class Circle extends Shape {
+    private double radius;
+
+    public Circle(){
+        radius = 0;
+    }
+
+    public Circle(double radius){
+        this.radius = radius;
+    }
+
+    public double area(){
+        return Math.PI*Math.pow(radius, 2);
+    }
+}
+
+***************************************************************************************

@@ -1,0 +1,180 @@
+Java Practical 11 May
+
+
+1) Write 4 programs called NumberPatternX (X = A, B, C, D) that prompts user for the size (a non-negative integer in int); and prints the pattern as shown:
+
+a)
+import java.util.Scanner;
+
+public class NumberPatternA {
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        System.out.print("Enter the size: ");
+        int n = get.nextInt();
+
+        for (int i = 1; i<=n; i++){
+            for (int j = 1; j<=i; j++){
+                System.out.print(j+" ");
+            }
+            System.out.print('\n');
+        }
+        get.close();
+    }
+}
+
+
+b)
+import java.util.Scanner;
+
+public class NumberPatternB {
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        System.out.print("Enter the size: ");
+        int n = get.nextInt();
+
+        for (int i = n; i>0; i--){
+            for (int j = 0; j<n-i; j++){
+                System.out.print("  ");
+            }
+            for (int j = 1; j<=i; j++){
+                System.out.print(j+" ");
+            }
+            System.out.print('\n');
+        }
+        get.close();
+    }
+}
+
+
+c)
+import java.util.Scanner;
+
+public class NumberPatternC {
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        System.out.print("Enter the size: ");
+        int n = get.nextInt();
+
+        for (int i = 1; i<=n; i++){
+            for (int j = n; j > i; j--){
+                System.out.print("  ");
+            }
+            for (int j = i; j > 0; j--){
+                System.out.print(j+" ");
+            }
+            System.out.print('\n');
+        }
+        get.close();
+    }
+}
+
+
+d)
+import java.util.Scanner;
+
+public class NumberPatternD {
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        System.out.print("Enter the size: ");
+        int n = get.nextInt();
+
+        for (int i = n; i > 0; i--){
+            for (int j = i; j > 0; j--){
+                System.out.print(j+" ");
+            }
+            System.out.print('\n');
+        }
+        get.close();
+    }
+}
+
+
+
+
+
+2) Write 2 programs called BoxPatternX (X = A, B) that prompts user for the size (a non-negative integer in int); and prints the pattern as shown:
+
+a)
+import java.util.Scanner;
+
+public class BoxPatternA {
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        System.out.print("Enter the size: ");
+        int n = get.nextInt();
+
+        for (int i = 1; i < n; i++){
+            for (int j = 1; j < n; j++){
+                if (i==1 || i==(n-1) || j==1 || j==(n-1)){
+                    System.out.print("# ");
+                } else System.out.print("  ");
+            }
+            System.out.print('\n');
+        }
+
+        get.close();
+    }
+}
+
+
+b)
+import java.util.Scanner;
+
+public class BoxPatternB {
+    public static void main(String[] args) {
+        Scanner get = new Scanner(System.in);
+        System.out.print("Enter the size: ");
+        int n = get.nextInt();
+
+        for (int i = 1; i < n; i++){
+            for (int j = 1; j < n; j++){
+                if (i==1 || i==(n-1) || i==j){
+                    System.out.print("# ");
+                }else{System.out.print("  ");}
+            }
+            System.out.print('\n');
+        }
+
+        get.close();
+    }
+}
+
+
+
+
+3) Write a program called Dec2Hex that prompts the user for a positive decimal number, read as int, and print its equivalent hexadecimal string.
+
+/*
+ *3) Write a program called Dec2Hex that prompts the user for a positive decimal number, read as
+ *int, and print its equivalent hexadecimal string. The output shall look like:
+ *
+ * Program by Om Gupta 214047 
+ */
+import java.util.Scanner;
+
+public class Dec2Hex {
+    String convert(int num){
+        String hex = "";
+        while(true)
+        {
+            int x = num%16;
+            num = num/16;
+            String tmp = ""; //For adding x at begining of hex
+            if (x<10) tmp += x;
+            else tmp += (char)(x+55);
+            tmp += hex;
+            hex = tmp;
+            if (num == 0) break;
+        }
+        return hex; 
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Dec2Hex hx = new Dec2Hex();
+
+        System.out.print("Enter a decimal number: ");
+        int number = sc.nextInt();
+        System.out.print("The equivalent hexadecimal number is "+hx.convert(number));
+        sc.close();
+    }
+}

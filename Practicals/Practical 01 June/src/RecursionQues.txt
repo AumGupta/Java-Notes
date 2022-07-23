@@ -1,0 +1,41 @@
+Practical June 1
+
+1
+Given an array of integers, compute recursively the number of times the value 15 appears in the array.
+Hint - 
+int find15(int arr[], int startIndex) 
+Here, arr is the array of integers and startIndex is the index from where the search starts. Initially the function can be invoked as - find15(arr, 0)
+
+2
+Given a string, write a recursive method to return another string where each adjacent character includes a ‘#’ in between.
+For example, input = “Hello” → output = “H#e#l#l#o”
+
+3
+Given a string, write a recursive method to check if the given string is a palindrome or not.
+For example,
+input = “malayalam” → output = true
+input = “geefeeg” → output = true
+input = “geefeg” → output = false
+
+Hint -
+boolean checkPalindrome(String str, int startIndex, int endIndex) 
+Call → checkPalindrome(str, 0, str.length() - 1)
+Compare the first and last characters first, if they are the same then compare 2nd and 2nd last character and so on.
+
+4
+Given an array of integers, write a recursive method to return the minimum element in the array.
+Hint -
+int minimum(int arr[], int size) 
+Call → minimum(arr, arr.length);
+
+5
+Given 2 positive integers, write a recursive method to calculate their sum using recursion.
+
+6
+Write a recursive method to return the sum of the following series where n is taken from the user.
+
+S = 1*1 + 2*2 + 3*3 + ……………… + n*n
+
+Note: In all the above questions, the main method should call the recursive method.
+
+

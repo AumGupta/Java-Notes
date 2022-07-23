@@ -1,0 +1,262 @@
+Practical June 9
+
+1) Create a class called Employee whose objects are records for an employee. This class will be a derived class of the class Person (given below). An employee record has an employee's name (inherited from the class Person), an annual salary represented as a single value of type double, a year the employee started work as a single value of type int and a national insurance number, which is a value of type String.
+
+Your class should have a reasonable number of constructors and accessor methods (getters and setters), as well as an equals method. Write another class containing a main method to fully test your class definition.
+
+class Person
+{
+	private String name;
+
+	public Person()
+	{
+		name = "No name yet.";
+	}
+	public Person(String n)
+	{
+		name = n;
+	}
+	public void setName(String newName)
+	{
+		name = newName;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public void print()
+	{
+		System.out.println("Name: " + name);
+	}
+	public boolean equals(Person p)
+	{
+		return name.equals(p.name);
+	}
+}
+
+class Employee extends Person
+{
+    private double annual_salary;
+    private int year_of_joining;
+    private String national_insurance_no;
+    
+	public Employee()
+	{
+		annual_salary = 0.0;
+		year_of_joining = 0000;
+		national_insurance_no = "-";
+	}
+
+	public Employee(String name, double annual_salary, int year_of_joining, String national_insurance_no)
+	{
+		super(name);
+		this.annual_salary = annual_salary;
+		this.year_of_joining = year_of_joining;
+		this.national_insurance_no = national_insurance_no;
+	}
+
+	public Employee( Employee emp)
+	{
+		super(emp.getName());
+		annual_salary = emp.annual_salary;
+		year_of_joining = emp.year_of_joining;
+		national_insurance_no = emp.national_insurance_no;
+	}
+
+	public Employee(String name, int year_of_joining, String national_insurance_no)
+	{
+		super(name);
+		this.year_of_joining = year_of_joining;
+		this.national_insurance_no = national_insurance_no;
+		this.annual_salary = 0.0;
+	}
+
+	public void setAnnualSal(double newSal){
+		annual_salary = newSal;
+	}
+
+	public void setYearOfJoining(int newYear){
+		year_of_joining = newYear;
+	}
+
+	public void setNationalInsNo(String newNo){
+		national_insurance_no = newNo;
+	}
+
+	public double getAnnualSal(){
+		return annual_salary;
+	}
+
+	public int getYearOfJoining(){
+		return year_of_joining;
+	}
+
+	public String getNationalInsNo(){
+		return national_insurance_no;
+	}
+
+	public boolean equals(Employee emp){
+		return ( (super.equals(emp)) && (annual_salary == emp.annual_salary) && (year_of_joining == emp.year_of_joining) && (national_insurance_no.equals(emp.national_insurance_no)) );
+	}
+
+}
+
+
+public class DemoEmployee{
+	public static void main(String[] args) {
+		Employee emp1 = new Employee();
+		System.out.print("EMPLOYEE 1");
+		System.out.println("\nName: "+emp1.getName()+"\nAnnual Salary: "+emp1.getAnnualSal()+"\nYear of Joining: "+emp1.getYearOfJoining()+"\nNational Insurance Number: "+emp1.getNationalInsNo());
+		emp1.setName("John");
+		emp1.setAnnualSal(200000.0);
+		emp1.setYearOfJoining(2020);
+		emp1.setNationalInsNo("SS2020");
+
+		System.out.print("\nEMPLOYEE 1 (After Changes)");
+		System.out.println("\nName: "+emp1.getName()+"\nAnnual Salary: "+emp1.getAnnualSal()+"\nYear of Joining: "+emp1.getYearOfJoining()+"\nNational Insurance Number: "+emp1.getNationalInsNo());
+		
+		Employee emp2 = new Employee("John", 200000.0, 2020, "SS2020");
+		System.out.print("\nEMPLOYEE 2");
+		System.out.println("\nName: "+emp2.getName()+"\nAnnual Salary: "+emp2.getAnnualSal()+"\nYear of Joining: "+emp2.getYearOfJoining()+"\nNational Insurance Number: "+emp2.getNationalInsNo());
+
+		if (emp1.equals(emp2)) System.out.println("\nEmployee 1 is same as employee 2.");
+
+	}
+}
+
+
+
+*******************************************************************************************************
+
+
+2) Write the classes as shown in the following class diagram.
+
+ class Point2D
+ {
+    private float x = 0.0f;
+    private float y = 0.0f;
+    
+    public Point2D(){};
+
+    public Point2D(float x, float y){
+        this.x = x;
+        this.y = y;
+    };
+    
+    public float getX(){
+        return x;
+    }
+
+    public float getY(){
+        return y;
+    }
+
+    public float[] getXY(){
+        float[] coordinates = new float[2];
+        coordinates[0] = x;
+        coordinates[1] = y;
+        return coordinates;
+    }
+    
+    public void setX(float x){
+        this.x = x;
+    }
+    
+    public void setY(float y){
+        this.y = y;
+    }
+    
+    public void setXY(float x, float y){
+        this.x = x;
+        this.y = y;    
+    }
+    
+    public String toString(){
+        return "("+x+", "+y+")";
+    }
+}
+
+class Point3D extends Point2D
+{
+    private float z = 0.0f;
+    
+    public Point3D(){}
+    
+    public Point3D(float x, float y, float z){
+        super(x,y);
+        this.z = z;
+    }
+
+    public float getZ(){
+        return z;
+    }
+
+    public void setZ(float z){
+        this.z = z;
+    }
+
+    public void setXYZ(float x, float y, float z){
+        setX(x);
+        setY(y);
+        this.z = z;
+    }
+
+    public float[] getXYZ(){
+        float[] coordinates = new float[3];
+        coordinates[0] = getX();
+        coordinates[1] = getY();
+        coordinates[2] = z;
+        return coordinates;
+    }
+    
+    public String toString(){
+        return "("+getX()+", "+getY()+", "+z+")";
+    }
+}
+
+*******************************************************************************************************
+
+3) Your job is to take code snippets from the pool and place them into blank lines of code. You may use the same snippet more than once and you might not need to use all the snippets. Your goal is to make a set of classes that will compile and run together as a program and produce the output given below.
+
+
+public class Boat {
+    private int length;
+    public void setLength(int len){
+        length = len;
+    }
+
+    public int getLength(){
+        return length;
+    }
+
+    public void move() {
+        System.out.print("drift ");
+    }
+}
+
+public class Rowboat extends Boat
+{
+    public void rowTheBoat(){
+        System.out.print("stroke natasha ");
+    }
+}
+
+public class Sailboat extends Boat
+{
+    public void move(){
+        System.out.print("hoist sail ");
+    }
+}
+
+public class TestBoats {
+    public static void main(String[] args)
+    {
+        Boat b1 = new Boat();
+        Sailboat b2 = new Sailboat();
+        Rowboat b3 = new Rowboat();
+        b2.setLength(32);
+        b1.move();
+        b3.move();
+        b2.move();   
+    }
+}
