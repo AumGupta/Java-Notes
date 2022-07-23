@@ -1,0 +1,76 @@
+4. Create an exception subclass UnderAge, which prints “Under Age” along with the age
+value when an object of UnderAge class is printed in the catch statement. Write a
+class exceptionDemo in which the method test() throws UnderAge exception if the
+variable age passed to it as argument is less than 18. Write main() method also to
+show working of the program.
+
+class UnderAge extends Exception{
+    UnderAge(int age){
+        super(""+age);
+    }
+}
+
+public class ExceptionDemo {
+    static void test(int age) throws UnderAge {
+        if (age<18) throw new UnderAge(age);
+        else System.out.println("Not UnderAge");
+    }
+
+    public static void main(String[] args) {
+        try {
+            test(13);
+        } catch (UnderAge e) {
+            System.out.println(e);
+        }
+    }
+}
+
+
+5. Write a program to implement stack. Use exception handling to manage underflow
+and overflow conditions.
+class UnderFlow extends Exception{}
+class OverFlow extends Exception{}
+
+class Stack {
+    int stk[];;
+    int tos = -1;
+
+    public Stack(int size){
+        stk = new int[size]; 
+    }
+
+    void push(int item) throws OverFlow{
+        if (tos==stk.length - 1){
+            throw new OverFlow();
+        } else {
+            stk[++tos] = item;
+        }
+    }
+    
+    int pop() throws UnderFlow{
+        if (tos < 0) {
+            throw new UnderFlow();
+        } else return stk[tos--];
+    }
+}
+
+
+public class StackDemo {
+    public static void main(String[] args) throws UnderFlow, OverFlow{
+        Stack stk1 = new Stack(20);
+        
+        try {
+            for (int i =0; i<23; i++){
+                stk1.push(i);
+            }
+            stk1.pop();
+        } catch (OverFlow | UnderFlow e) {
+            System.out.print(e + "\n");
+        }
+
+        System.out.println("Given Stack 1: ");
+        for (int i = 0; i<20; i++){
+            System.out.println(stk1.pop());
+        }
+    }
+}
